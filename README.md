@@ -66,48 +66,7 @@ VarunCodeX helps students, startups, and businesses build digital products, lear
   workflow.js
 /public
   /assets
-    varuncodex-logo.png
-    logo.png
-```
-
-## Setup Commands
-
-```bash
-npm install
-```
-
-## Run Locally
-
-```bash
-npm run dev
-```
-
-Open:
-
-```text
-http://localhost:3000
-```
-
-## Build Command
-
-```bash
-npm run build
-```
-
-## Deploy on Vercel
-
-1. Push this project to GitHub.
-2. Open Vercel and choose **Add New Project**.
-3. Import the GitHub repository.
-4. Keep the default Next.js settings.
-5. Click **Deploy**.
-
-Vercel will automatically run:
-
-```bash
-npm install
-npm run build
-```
+    varuncodex-logo.
 
 ## Contact Details
 
