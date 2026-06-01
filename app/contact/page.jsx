@@ -11,7 +11,7 @@ export default function ContactPage() {
       <PageHero
         kicker="Contact"
         title="Start a project, book a consultation, or ask for guidance."
-        copy="Use the inquiry form to send your details directly through WhatsApp Business. No database is used for now."
+        copy="Use WhatsApp for quick enquiry or submit the Salesforce CRM form for structured follow-up."
       />
       <Contact />
     </main>
