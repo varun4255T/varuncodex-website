@@ -334,8 +334,6 @@ ${message}`;
             value='{"keyname":"varuncodex22","fallback":"true","orgId":"00DdM00000vPypt","ts":""}'
           />
           <input type="hidden" name="oid" value="00DdM00000vPypt" />
-          <input type="hidden" name="debug" value="1" />
-          <input type="hidden" name="debugEmail" value="tvarun1706@gmail.com" />
           <input type="hidden" name="retURL" value="https://varuncodex.netlify.app/" />
           <input type="hidden" name="lead_source" value="Website" />
           <input ref={descriptionRef} type="hidden" name="description" />
