@@ -7,7 +7,7 @@ import { BRAND } from "@/data/brand";
 
 const supportEmail = "codewithvarun1711@gmail.com";
 
-const services = [
+const whatsappServices = [
   "Web Development",
   "Startup Consulting",
   "Coding Mentorship",
@@ -17,7 +17,7 @@ const services = [
   "Internship Program"
 ];
 
-const budgets = [
+const whatsappBudgets = [
   "Below ₹500",
   "₹500 - ₹1,500",
   "₹1,500 - ₹3,500",
@@ -25,6 +25,34 @@ const budgets = [
   "₹6,000 - ₹12,000",
   "Need guidance"
 ];
+
+const salesforceServices = [
+  "Salesforce Admin",
+  "Salesforce Development",
+  "Web Development",
+  "Java",
+  "DSA",
+  "CRM Setup",
+  "AI Automation",
+  "Website Development",
+  "Other"
+];
+
+const salesforceBudgets = [
+  "Need guidance",
+  "Under ₹5,000",
+  "₹5,000 - ₹10,000",
+  "₹10,000 - ₹25,000",
+  "₹25,000+"
+];
+
+const SALESFORCE_FIELD_IDS = {
+  serviceInterest: "00NdM00002Snhp3",
+  budgetRange: "00NdM00002SngzS",
+  customerMessage: "00NdM00002SnjUH",
+  websiteFormType: "00NdM00002SnkWn",
+  websiteSourcePage: "00NdM00002SnktN"
+};
 
 const states = [
   ["", "Select state"],
@@ -102,9 +130,9 @@ Please contact me.`;
     const phone = formData.get("phone")?.toString().trim() || "";
     const company = formData.get("company")?.toString().trim() || "";
     const city = formData.get("city")?.toString().trim() || "";
-    const service = formData.get("service_interest")?.toString().trim() || "";
-    const budget = formData.get("budget_range")?.toString().trim() || "";
-    const message = formData.get("customer_message")?.toString().trim() || "";
+    const service = formData.get(SALESFORCE_FIELD_IDS.serviceInterest)?.toString().trim() || "";
+    const budget = formData.get(SALESFORCE_FIELD_IDS.budgetRange)?.toString().trim() || "";
+    const message = formData.get(SALESFORCE_FIELD_IDS.customerMessage)?.toString().trim() || "";
 
     if (descriptionRef.current) {
       descriptionRef.current.value = `New VarunCodeX Website Lead
@@ -229,7 +257,7 @@ ${message}`;
                 <option value="" disabled className="bg-slate-950 text-white">
                   Select a service
                 </option>
-                {services.map((service) => (
+                {whatsappServices.map((service) => (
                   <option key={service} className="bg-slate-950 text-white">
                     {service}
                   </option>
@@ -248,7 +276,7 @@ ${message}`;
                 <option value="" disabled className="bg-slate-950 text-white">
                   Select budget range
                 </option>
-                {budgets.map((budget) => (
+                {whatsappBudgets.map((budget) => (
                   <option key={budget} className="bg-slate-950 text-white">
                     {budget}
                   </option>
@@ -293,8 +321,14 @@ ${message}`;
         >
           <input type="hidden" name="oid" value="00DdM00000vPypt" />
           <input type="hidden" name="retURL" value="https://varuncodex.netlify.app/" />
-          <input type="hidden" name="lead_source" value="Website" />
+          <input type="hidden" name="lead_source" value="Web" />
           <input ref={descriptionRef} type="hidden" name="description" />
+          <input type="hidden" name={SALESFORCE_FIELD_IDS.websiteFormType} value="CRM Enquiry" />
+          <input
+            type="hidden"
+            name={SALESFORCE_FIELD_IDS.websiteSourcePage}
+            value="https://varuncodex.netlify.app/contact"
+          />
 
           <div className="mb-6 grid gap-4 lg:grid-cols-[.8fr_1.2fr]">
             <div>
@@ -428,7 +462,8 @@ ${message}`;
             <label className="grid gap-2 text-sm font-bold text-slate-200">
               Service Interested In *
               <select
-                name="service_interest"
+                id={SALESFORCE_FIELD_IDS.serviceInterest}
+                name={SALESFORCE_FIELD_IDS.serviceInterest}
                 required
                 defaultValue=""
                 className="rounded-lg border border-white/10 bg-slate-950/70 px-4 py-3 text-white outline-none transition focus:border-electric"
@@ -436,7 +471,7 @@ ${message}`;
                 <option value="" disabled className="bg-slate-950 text-white">
                   Select a service
                 </option>
-                {services.map((service) => (
+                {salesforceServices.map((service) => (
                   <option key={service} value={service} className="bg-slate-950 text-white">
                     {service}
                   </option>
@@ -447,7 +482,8 @@ ${message}`;
             <label className="grid gap-2 text-sm font-bold text-slate-200">
               Budget Range *
               <select
-                name="budget_range"
+                id={SALESFORCE_FIELD_IDS.budgetRange}
+                name={SALESFORCE_FIELD_IDS.budgetRange}
                 required
                 defaultValue=""
                 className="rounded-lg border border-white/10 bg-slate-950/70 px-4 py-3 text-white outline-none transition focus:border-electric"
@@ -455,7 +491,7 @@ ${message}`;
                 <option value="" disabled className="bg-slate-950 text-white">
                   Select budget range
                 </option>
-                {budgets.map((budget) => (
+                {salesforceBudgets.map((budget) => (
                   <option key={budget} value={budget} className="bg-slate-950 text-white">
                     {budget}
                   </option>
@@ -467,7 +503,8 @@ ${message}`;
           <label className="mt-5 grid gap-2 text-sm font-bold text-slate-200">
             Message *
             <textarea
-              name="customer_message"
+              id={SALESFORCE_FIELD_IDS.customerMessage}
+              name={SALESFORCE_FIELD_IDS.customerMessage}
               required
               className="min-h-32 rounded-lg border border-white/10 bg-slate-950/70 px-4 py-3 text-white outline-none transition placeholder:text-slate-500 focus:border-electric"
               placeholder="Tell us what you want to build, learn, automate, or improve..."
