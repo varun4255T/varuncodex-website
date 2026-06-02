@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import Script from "next/script";
+import { useRef, useState } from "react";
 import { Instagram, Linkedin, Mail, MessageCircle } from "lucide-react";
 import SectionHeader from "./SectionHeader";
 import { BRAND } from "@/data/brand";
@@ -44,27 +43,6 @@ export default function Contact() {
   const [whatsappStatus, setWhatsappStatus] = useState("");
   const [leadStatus, setLeadStatus] = useState("");
   const descriptionRef = useRef(null);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      const response = document.getElementById("g-recaptcha-response");
-      const captchaSettings = document.getElementsByName("captcha_settings")[0];
-
-      if (!response || !captchaSettings) return;
-
-      if (response.value.trim() === "") {
-        try {
-          const elems = JSON.parse(captchaSettings.value);
-          elems.ts = JSON.stringify(new Date().getTime());
-          captchaSettings.value = JSON.stringify(elems);
-        } catch {
-          // Keep Salesforce captcha script stable even if parsing fails.
-        }
-      }
-    }, 500);
-
-    return () => clearInterval(interval);
-  }, []);
 
   function handleWhatsappSubmit(event) {
     event.preventDefault();
@@ -116,14 +94,6 @@ Please contact me.`;
 
   function handleSalesforceSubmit(event) {
     const form = event.currentTarget;
-    const captchaResponse = document.getElementById("g-recaptcha-response");
-
-    if (!captchaResponse || captchaResponse.value.trim() === "") {
-      event.preventDefault();
-      setLeadStatus("Please complete the reCAPTCHA before submitting.");
-      return;
-    }
-
     const formData = new FormData(form);
 
     const firstName = formData.get("first_name")?.toString().trim() || "";
@@ -156,13 +126,6 @@ ${message}`;
 
   return (
     <section id="contact" className="py-24">
-      <Script
-        src="https://www.google.com/recaptcha/api.js"
-        strategy="afterInteractive"
-        async
-        defer
-      />
-
       <div className="section-shell grid gap-10 lg:grid-cols-[.86fr_1.14fr]">
         <div>
           <SectionHeader
@@ -328,11 +291,6 @@ ${message}`;
           method="POST"
           className="glass-panel rounded-lg p-6 lg:col-span-2"
         >
-          <input
-            type="hidden"
-            name="captcha_settings"
-            value='{"keyname":"varuncodex22","fallback":"true","orgId":"00DdM00000vPypt","ts":""}'
-          />
           <input type="hidden" name="oid" value="00DdM00000vPypt" />
           <input type="hidden" name="retURL" value="https://varuncodex.netlify.app/" />
           <input type="hidden" name="lead_source" value="Website" />
@@ -515,15 +473,6 @@ ${message}`;
               placeholder="Tell us what you want to build, learn, automate, or improve..."
             />
           </label>
-
-          <div className="mt-6 flex justify-center rounded-lg border border-white/10 bg-white/[0.04] p-4">
-            <div className="origin-center scale-[0.88] sm:scale-100">
-              <div
-                className="g-recaptcha"
-                data-sitekey="6Lf-iAgtAAAAADG5XY6uOB4XOSnfuqR1JIhzq2XH"
-              />
-            </div>
-          </div>
 
           <button
             type="submit"
