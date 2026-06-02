@@ -331,10 +331,10 @@ ${message}`;
           <input
             type="hidden"
             name="captcha_settings"
-            value='{"keyname":"VaruncodeX","fallback":"true","orgId":"00DdM00000vPypt","ts":""}'
+            value='{"keyname":"varuncodex22","fallback":"true","orgId":"00DdM00000vPypt","ts":""}'
           />
           <input type="hidden" name="oid" value="00DdM00000vPypt" />
-          <input type="hidden" name="retURL" value="https://varuncodex.netlify.app" />
+          <input type="hidden" name="retURL" value="https://varuncodex.netlify.app/" />
           <input type="hidden" name="lead_source" value="Website" />
           <input ref={descriptionRef} type="hidden" name="description" />
 
@@ -516,11 +516,13 @@ ${message}`;
             />
           </label>
 
-          <div className="mt-6 flex justify-center overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] p-4">
-            <div
-              className="g-recaptcha"
-              data-sitekey="6LfmswctAAAAAJ35VSQISKI7FVJZviiwqfKfJC4A"
-            />
+          <div className="mt-6 flex justify-center rounded-lg border border-white/10 bg-white/[0.04] p-4">
+            <div className="origin-center scale-[0.88] sm:scale-100">
+              <div
+                className="g-recaptcha"
+                data-sitekey="6Lf-iAgtAAAAADG5XY6uOB4XOSnfuqR1JIhzq2XH"
+              />
+            </div>
           </div>
 
           <button
